@@ -1,0 +1,29 @@
+name: build-evilwoods-binary-cache
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "bootc/evilwoods-builder/**"
+  workflow_dispatch:
+
+env:
+  REGISTRY: quay.io/aitvaras
+  IMAGE_NAME: evilwoods-builder
+  CONTAINERFILE: Containerfile
+
+jobs:
+  podman-build:
+    runs-on: blacksmith-2vcpu-ubuntu-2404
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Update podman
+        uses: redhat-action/podman-install@main
+        with:
+          ubuntu-version: "24.04"
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Print podman podman version
+        run: podman --version

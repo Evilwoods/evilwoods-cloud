@@ -1,12 +1,12 @@
 name: build-evilwoods-server
 on:
-  schedule:
-    - cron: "21 4 * * 5"
-  push:
-    branches:
-      - main
-    paths:
-      - "bootc/evilwoods-server/**"
+  # schedule:
+  #   - cron: "21 4 * * 5"
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - "bootc/evilwoods-server/**"
   workflow_dispatch:
 
 env:

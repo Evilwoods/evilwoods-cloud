@@ -1,29 +1,25 @@
 set -eo pipefail
 
+apk add --no-cache gomplate
+
 atuin_archive_name="atuin-x86_64-unknown-linux-gnu"
 
-chezmoi_version="2.63.1"
+chezmoi_version="2.70.0"
 chezmoi_dir="chezmoi_${chezmoi_version}_linux-glibc_amd64"
 chezmoi_archive="${chezmoi_dir}.tar.gz"
 
-bitwarden_version="1.0.0"
+bitwarden_version="2.0.0"
 bitwarden_archive="bws-x86_64-unknown-linux-gnu-${bitwarden_version}.zip"
 
 zellij_archive="zellij-x86_64-unknown-linux-musl.tar.gz"
 
+forgejo_runner_version=12.7.1
+
 binary_folder=/binaries
 rpm_folder=/rpms
 
-proton_mail_version="1.9.0"
-proton_pass_version="1.32.3-1"
-
 mkdir -p $binary_folder
 mkdir -p $rpm_folder
-
-cd $rpm_folder
-
-wget -q https://proton.me/download/mail/linux/${proton_mail_version}/ProtonMail-desktop-beta.rpm
-wget -q https://proton.me/download/pass/linux/proton-pass-${proton_pass_version}.x86_64.rpm
 
 cd /tmp
 wget -q "https://github.com/bitwarden/sdk-sm/releases/download/bws-v${bitwarden_version}/${bitwarden_archive}"
@@ -44,5 +40,9 @@ cp chezmoi "${binary_folder}/"
 wget -q "https://github.com/zellij-org/zellij/releases/latest/download/${zellij_archive}"
 tar -xf $zellij_archive
 cp zellij "${binary_folder}/"
+
+wget -q -O forgejo-runner "https://code.forgejo.org/forgejo/runner/releases/download/v${forgejo_runner_version}/forgejo-runner-${forgejo_runner_version}-linux-amd64"
+chmod +x ./forgejo-runner
+cp forgejo-runner "${binary_folder}/"
 
 rm -r /tmp/*

@@ -1,12 +1,12 @@
 name: build-evilwoods-desktop
 on:
-  schedule:
-    - cron: "41 4 * * *"
-  push:
-    branches:
-      - main
-    paths:
-      - "bootc/evilwoods-desktop/**"
+  #   schedule:
+  #     - cron: "41 4 * * *"
+  #   push:
+  #     branches:
+  #       - main
+  #     paths:
+  #       - "bootc/evilwoods-desktop/**"
   workflow_dispatch:
     inputs:
       skip-cache:

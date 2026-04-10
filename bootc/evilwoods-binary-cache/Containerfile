@@ -1,5 +1,0 @@
-FROM docker.io/library/alpine:3
-
-RUN --mount=type=bind,src=./context,dst=/context,relabel=shared \
-  sh -c '/context/scripts/download-binaries.bash'
-
