@@ -1,4 +1,4 @@
-name: build-evilwoods-binary-cache
+name: build-evilwoods-builder
 on:
   push:
     branches:
